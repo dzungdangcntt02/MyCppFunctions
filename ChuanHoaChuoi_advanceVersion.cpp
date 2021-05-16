@@ -152,17 +152,6 @@ void ChuanHoa(string* p_str) {
     toUppercaseFirstCharName(p_str);
 }
 
-/*
-    Test Case:
-    Case 1:
-    Input:
-    "     nGuy32en  35  di0nH    hu8An   "
-    Output: 
-    21
-    Nguyen Dinh Huan
-
-*/
-
 int main() {
     
     
