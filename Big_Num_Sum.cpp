@@ -153,25 +153,55 @@ string solveBigNumber(string a, string b) {
     return res;
 }
 
+/*
+    Xoa mot ki tu o vi tri idx trong xau
+*/
+void remove_one_char(string& s, int& location) {
+    for (int i = location; i < s.length() - 1; i++) {
+        s[i] = s[i + 1];
+    }
+    s.pop_back();
+}
+
+/*
+    Xoa tat ca so 0 o dau ket qua
+*/
+string polishResult(string s) {
+    string tmp = s;
+    for (int i = 0; i < tmp.length(); i++) {
+        if (tmp[i] != '0') {
+            return tmp;
+        } else {
+            remove_one_char(tmp, i);
+            if (tmp[i] == '0') i--;
+        }
+        
+    }
+    return tmp;
+}
+
 //  Extra: Truong hop nhap vao chuoi rong (Enter) -> Can fix
 int main() {
 
+    cout << "Nhap so cap so can tinh toan: ";
     int n;
     cin >> n;
     string a[n], b[n];
 
     int count = 0;
     while (count < n) {
+        cout << "Nhap 2 so can tinh: ";
         cin >> a[count] >> b[count];
         count++;
     }
 
     for (int i = 0; i < n; i++) {
         if (checkInput(a[i]) && checkInput(b[i])) {
+            cout << "Ket qua cua cap so thu " << i + 1 << " = ";
             if (checkAttribute(a[i], b[i])) {
-                cout << solveSmallNumber(a[i], b[i]) << endl;
+                cout << polishResult(solveSmallNumber(a[i], b[i])) << endl;
             } else {
-                cout << solveBigNumber(a[i], b[i]) << endl;
+                cout << polishResult(solveBigNumber(a[i], b[i])) << endl;
             }
         }
     }
